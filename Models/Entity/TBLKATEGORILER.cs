@@ -11,7 +11,9 @@ namespace mvcStok.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TBLKATEGORILER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +21,11 @@ namespace mvcStok.Models.Entity
         {
             this.TBLURUNLER = new HashSet<TBLURUNLER>();
         }
-    
+        [DisplayName("Kategori Numarasý")]  // Kategori Güncelleme sayfasýnda kategorýýd olarak deðil kategori numarasý olarak gelmesi için yazdým .
         public short KATEGORIID { get; set; }
+
+        [DisplayName("Kategori Adý")]
+        [Required (ErrorMessage ="Kategori Adýný Boþ Býrakamazsýnýz !")] // Kategori Adýn gerekli olduðunu programa bildirir .
         public string KATEGORIAD { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

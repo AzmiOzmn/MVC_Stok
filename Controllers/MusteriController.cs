@@ -26,9 +26,36 @@ namespace mvcStok.Controllers
         [HttpPost]
         public ActionResult YeniMusteri(TBLMUSTERILER p1)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("YeniMusteri");
+            }
             db.TBLMUSTERILER.Add(p1);
             db.SaveChanges();
             return View();
+        }
+
+        public ActionResult SIL(int id) 
+        {
+            var sil = db.TBLMUSTERILER.Find(id);
+            db.TBLMUSTERILER.Remove(sil);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult MusteriGetir(int id)
+        {
+            var mst = db.TBLMUSTERILER.Find(id);
+            return View("MusteriGetir",mst);
+        }
+
+        public ActionResult Guncelle(TBLMUSTERILER p1)
+        {
+            var mst = db.TBLMUSTERILER.Find(p1.MUSTERIID);
+            mst.MUSTERIAD = p1.MUSTERIAD;
+            mst.MUSTERISOYAD = p1.MUSTERISOYAD;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
