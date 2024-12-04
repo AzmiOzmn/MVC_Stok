@@ -4,7 +4,19 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+@using (Html.BeginForm("Index", "Musteri", FormMethod.Get))
+{
+    <div>
+        <p>Aranacak Müşteri Adı : @Html.TextBox("p") </p>
+        <input type="submit" value="Ara" class="btn btn-outline-primary" />
+    </div>
+    
 
+
+    <br />
+    <br />
+
+}
 <table class="table table-bordered">
     <tr>
         <th>Müşteri ID</th>
@@ -12,6 +24,7 @@
         <th>Müşteri Soyad</th>
         <th>Sil</th>
         <th>Güncelle</th>
+        <th>Alert</th>
 
     </tr>
 
@@ -25,6 +38,7 @@
 
                 <td><a href="/MUSTERI/SIL/@item.MUSTERIID" class="btn btn-danger">Sil</a></td>
                 <td><a href="/MUSTERI/MusteriGetir/@item.MUSTERIID" class="btn btn-success">Güncelle</a></td>
+                <td>@Html.ActionLink("SİL BUTONU", "SIL", new { id = @item.MUSTERIID }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten silmek istiyormusunuz ?')" }) </td>
 
             </tr>
         }

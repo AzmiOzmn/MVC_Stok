@@ -70,7 +70,9 @@ namespace mvcStok.Controllers
             urun.MARKA = p.MARKA;
             urun.STOK = p.STOK;
             urun.FIYAT = p.FIYAT;
-            urun.URUNKATEGORI = p.URUNKATEGORI;
+            //urun.URUNKATEGORI = p.URUNKATEGORI;
+            var ktg = db.TBLKATEGORILER.Where(m => m.KATEGORIID == p.TBLKATEGORILER.KATEGORIID).FirstOrDefault();
+            urun.URUNKATEGORI = ktg.KATEGORIID;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
